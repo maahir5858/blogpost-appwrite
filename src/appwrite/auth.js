@@ -1,6 +1,8 @@
 import conf from "../conf/conf";
 import { Client, Account, ID } from "appwrite";
 
+// Auth Services for User
+
 class AuthService {
 
     constructor() {
