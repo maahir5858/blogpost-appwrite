@@ -1,19 +1,35 @@
+import { useState, useEffect } from 'react';
 import './App.css'
-import conf from './conf/conf';
+import { useDispatch } from 'react-redux';
+import { login, logout } from './features/auth/authSlice'
+import authService from './appwrite/auth';
+import { Header, Footer } from './components/index'
 
 function App() {
 
-    // console.log(import.meta.env.VITE_APPWRITE_URL);
-    // console.log(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
-    // Better way to ACCESS Environment Variables   -->   config.js
-    console.log(conf.appwriteUrl);
-    console.log(conf.appwriteProjectId);
+    useEffect(() => {
+        authService.getUser()
+            .then((userData) => {
+                if (userData) {
+                    dispatch(login({userData}));
+                } else {
+                    dispatch(logout());
+                }
+            })
+            .finally(() => setLoading(false));
+    }, []);
 
-    return (
-        <>
-            <h1>A blog app with appwrite</h1>
-        </>
+    return (loading) ? (<h1>Loading...</h1>) : (
+        <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+            <div className='w-full block'>
+                <Header />
+                {/* <Outlet /> */}
+                <Footer />
+            </div>
+        </div>
     )
 }
 

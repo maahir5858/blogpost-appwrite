@@ -1,3 +1,11 @@
+// Better way to ACCESS Environment Variables   -->   conf.js
+
+// console.log(import.meta.env.VITE_APPWRITE_URL);
+// console.log(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+
+// console.log(conf.appwriteUrl);
+// console.log(conf.appwriteProjectId);
+
 const conf = {
     appwriteUrl: String(import.meta.env.VITE_APPWRITE_URL),
     appwriteProjectId: String(import.meta.env.VITE_APPWRITE_PROJECT_ID),

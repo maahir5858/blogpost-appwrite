@@ -3,12 +3,15 @@ import { Client, Storage, ID } from "appwrite";
 
 class StorageService {
 
+    client = new Client();
+    account;
+
     constructor() {
-        const client = new Client()
+        this.client = new Client()
             .setEndpoint('https://<REGION>.cloud.appwrite.io/v1')
             .setProject('<PROJECT_ID>');
 
-        const storage = new Storage(this.client);
+        this.storage = new Storage(this.client);
     }
 
     async uploadFile(file) {

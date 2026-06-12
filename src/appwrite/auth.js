@@ -5,12 +5,15 @@ import { Client, Account, ID } from "appwrite";
 
 class AuthService {
 
+    client = new Client();
+    account;
+
     constructor() {
-        const client = new Client()
+        this.client = new Client()
             .setEndpoint(conf.appwriteUrl)                       // Your API Endpoint
             .setProject(conf.appwriteProjectId);                 // Your project ID
 
-        const account = new Account(this.client);
+        this.account = new Account(this.client);
     }
 
     async signup({ email, password, name }) {

@@ -5,12 +5,15 @@ import { Client, TablesDB, ID, Query } from "appwrite";
 
 class PostService {
 
+    client = new Client();
+    account;
+
     constructor() {
-        const client = new Client()
+        this.client = new Client()
             .setEndpoint('https://<REGION>.cloud.appwrite.io/v1')
             .setProject('<PROJECT_ID>');
 
-        const tablesDB = new TablesDB(this.client);
+        this.tablesDB = new TablesDB(this.client);
     }
 
     async createPost({ title, slug, content, featuredImage, status, userId }) {
