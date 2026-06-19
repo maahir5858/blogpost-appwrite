@@ -1,0 +1,51 @@
+YOU MAY ALSO SETUP APPWRITE SERVICES LIKE THIS MANNER  -->
+
+here we CREATE the INSTANCES OF CLASSES --> Account and Client  - first and then EXPORT an OBJECT OF METHODS NAMED {{ authService }}.
+
+
+import { Client, Account, ID } from 'appwrite';
+
+const client = new Client()
+    .setEndpoint('.....')                   // Replace with your endpoint
+    .setProject('.....');                   // Replace with your project ID
+
+const account = new Account(client);
+
+export const authService = {
+    // Create a new user account and automatically log them in
+    async createAccount({ email, password, name }) {
+        try {
+            await account.create(ID.unique(), email, password, name);
+            return this.login({ email, password });
+        } catch (error) {
+            throw new Error(error.message || 'Signup failed');
+        }
+    },
+
+    // Create a new session (Login)
+    async login({ email, password }) {
+        try {
+            return await account.createEmailPasswordSession(email, password);
+        } catch (error) {
+            throw new Error(error.message || 'Login failed');
+        }
+    },
+
+    // Get currently logged-in user
+    async getCurrentUser() {
+        try {
+            return await account.get();
+        } catch (error) {
+            return null;
+        }
+    },
+
+    // Delete current session (Logout)
+    async logout() {
+        try {
+            await account.deleteSession('current');
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    }
+};

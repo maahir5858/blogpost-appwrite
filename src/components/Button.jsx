@@ -2,7 +2,7 @@ import React from 'react'
 
 function Button({
     children,
-    type = 'button',
+    type = 'button',                // Explicit setting type = "button"   -->    Does not trigger form's onSubmit
     bgColor = 'bg-blue-600',
     textColor = 'text-white',
     className = '',
