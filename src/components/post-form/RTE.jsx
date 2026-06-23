@@ -1,6 +1,7 @@
 import React from 'react'
 import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from 'react-hook-form';
+import conf from '../../conf/conf';
 
 //  Editor              -->         TinyMCE component
 //  Controller          -->         ReactHookForm's Adapter to have control over 3rd party
@@ -15,6 +16,7 @@ export default function RTE({ name ="content", control, label, defaultValue = ""
                 control={control}
                 render={({ field: { onChange } }) => (
                     <Editor
+                        apiKey={conf.tinyMceApiKey}
                         initialValue={defaultValue}
                         init={{
                             height: 500,

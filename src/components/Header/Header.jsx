@@ -31,8 +31,8 @@ function Header() {
 			active: authStatus
 		},
 		{
-			name: "Add Posts",
-			path: "/add-posts",
+			name: "Add Post",
+			path: "/add-post",
 			active: authStatus
 		},
 	]
@@ -51,7 +51,7 @@ function Header() {
 							item.active ? (
 								<li key={item.name}>
 									<button
-										onClick={navigate(item.path)}
+										onClick={() => navigate(item.path)}
 										className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
 									>
 										{item.name}

@@ -17,7 +17,7 @@ function Input({
 }) {
     return (
         <div>
-            label && (<label>{label}</label>)
+            {label && (<label>{label}</label>)}
     
             <input 
                 ref={ref}

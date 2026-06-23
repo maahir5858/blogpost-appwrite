@@ -10,8 +10,8 @@ class PostService {
 
     constructor() {
         this.client = new Client()
-            .setEndpoint('https://<REGION>.cloud.appwrite.io/v1')
-            .setProject('<PROJECT_ID>');
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
 
         this.tablesDB = new TablesDB(this.client);
     }
@@ -32,12 +32,13 @@ class PostService {
             });            
         } catch (error) {
             console.error("Appwrite Service :: createPost() :: error", error);
+            throw error;
         }
     }
 
     async updatePost(slug, { title, content, featuredImage, status, userId }) {
         try {
-            this.tablesDB.updateRow(
+            return await this.tablesDB.updateRow(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
@@ -51,16 +52,17 @@ class PostService {
             );
         } catch (error) {
             console.error("Appwrite Service :: updatePost() :: error", error);
+            throw error;
         }
     }
 
     async deletePost(slug) {
         try {
-            await this.databases.deleteDocument({
-                databaseId: conf.appwriteDatabaseId,
-                collectionId: conf.appwriteCollectionId,
-                documentId: slug,
-            });
+            await this.databases.deleteRow(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug,
+            );
             return true;
         } catch (error) {
             console.error("Appwrite Service :: deletePost() :: error", error);
@@ -70,10 +72,10 @@ class PostService {
 
     async getPost(slug) {
         try {
-            await this.databases.getDocument({
+            return await this.tablesDB.getRow({
                 databaseId: conf.appwriteDatabaseId,
-                collectionId: conf.appwriteCollectionId,
-                documentId: slug,
+                tableId: conf.appwriteCollectionId,
+                rowId: slug,
                 // queries: [ Query.equal('title', 'active') ]
             });
         } catch (error) {
@@ -83,11 +85,11 @@ class PostService {
 
     async getPosts() {
         try {
-            await this.databases.listDocuments({
+            return await this.tablesDB.listRows({
                 databaseId: conf.appwriteDatabaseId,
-                collectionId: conf.appwriteCollectionId,
+                tableId: conf.appwriteCollectionId,
                 queries: [
-                    Query.equal('title', 'active')
+                    Query.equal('status', 'active')
                 ]
             });
         } catch (error) {

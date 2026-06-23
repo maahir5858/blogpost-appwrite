@@ -10,7 +10,7 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [submitError, setSubmitError] = useState("");
-    
+
     const { register, handleSubmit, } = useForm();
     /*  OR Initialize defaultValues  -->
 
@@ -27,10 +27,10 @@ function Login() {
         setSubmitError("");                         // Good Practice
 
         try {
-            const session = await authService.login(data); 
+            const session = await authService.login(data);
             if (session) {
                 const userData = await authService.getUser()
-                if (userData) dispatch(storeLogin(userData));
+                if (userData) dispatch(storeLogin({ userData }));
                 navigate("/");
             }
         } catch (error) {

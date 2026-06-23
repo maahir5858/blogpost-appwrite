@@ -14,7 +14,7 @@ function Footer() {
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600">
-                                    &copy; Copyright 2026. All Rights Reserved by DevUI.
+                                    &copy; Copyright 2026. All Rights Reserved by Maahir.
                                 </p>
                             </div>
                         </div>
@@ -22,9 +22,18 @@ function Footer() {
                     <div className="w-full p-6 md:w-1/2 lg:w-2/12">
                         <div className="h-full">
                             <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                                Company
+                                About
                             </h3>
                             <ul>
+                                <li className="mb-4">
+                                    <a
+                                        className="text-base font-medium text-gray-900 hover:text-gray-700"
+                                        href="https://github.com/maahir5858"
+                                        target="_blank"
+                                    >
+                                        Github Profile
+                                    </a>
+                                </li>
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
@@ -39,22 +48,6 @@ function Footer() {
                                         to="/"
                                     >
                                         Pricing
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Affiliate Program
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Press Kit
                                     </Link>
                                 </li>
                             </ul>
@@ -90,14 +83,6 @@ function Footer() {
                                         Contact Us
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Customer Support
-                                    </Link>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -121,14 +106,6 @@ function Footer() {
                                         to="/"
                                     >
                                         Privacy Policy
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Licensing
                                     </Link>
                                 </li>
                             </ul>

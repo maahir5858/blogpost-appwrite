@@ -8,23 +8,22 @@ class StorageService {
 
     constructor() {
         this.client = new Client()
-            .setEndpoint('https://<REGION>.cloud.appwrite.io/v1')
-            .setProject('<PROJECT_ID>');
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
 
         this.storage = new Storage(this.client);
     }
 
     async uploadFile(file) {
         try {
-            const fileId = await this.storage.createFile({
+            return await this.storage.createFile({
                 bucketId: conf.appwriteBucketId,
                 fileId: ID.unique(),
                 file
             });
-            return true;
         } catch (error) {
             console.error("Appwrite Service :: uploadFile() :: error", error);
-            return false;
+            throw error;
         }
     }
 
@@ -41,13 +40,13 @@ class StorageService {
         }
     }
 
-    async getFile(fileId) {
+    getFile(fileId) {
         try {
-            this.storage.getFilePreview({
+            return this.storage.getFileView({
                 bucketId: conf.appwriteBucketId,
                 fileId: fileId,
-                // width: 0,        // optional
-                // height: 0
+                width: 0,
+                height: 0
             });
         } catch (error) {
             console.error("Appwrite Service :: getFile() :: error", error);

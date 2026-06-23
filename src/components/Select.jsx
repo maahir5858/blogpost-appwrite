@@ -20,7 +20,7 @@ function Select({
             >
                 {options?.map((option) => (
                     <option key={option} value={option}>
-                        {option}
+                        {option.toUpperCase()}
                     </option>
                 ))}
             </select>

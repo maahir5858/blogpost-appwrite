@@ -25,13 +25,14 @@ class AuthService {
                 name
             })
             if (userAccount) {
-                this.account.login({ email, password });
+                await this.login({ email, password });
                 return userAccount;
             } else {
                 return userAccount;
             }
         } catch (error) {
             console.error("Appwrite Service :: signup() :: error", error);
+            throw error;
         }
     }
 
@@ -44,6 +45,7 @@ class AuthService {
             return result;
         } catch (error) {
             console.error("Appwrite Service :: login() :: error", error);
+            throw error; 
         }
     }
 
@@ -53,6 +55,7 @@ class AuthService {
             return result;
         } catch (error) {
             console.error("Appwrite Service :: getUser() :: error", error);
+            throw error;
         }
         return null;
     }
@@ -63,6 +66,7 @@ class AuthService {
             await this.account.deleteSessions();                  // logout the user on all devices
         } catch (error) {
             console.error("Appwrite Service :: logout() :: error", error);
+            throw error;
         }
     }
 

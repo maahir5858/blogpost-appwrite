@@ -32,7 +32,7 @@ function Signup() {
             const session = await authService.signup(data);
             if (session) {
                 const userData = await authService.getUser();
-                if (userData) dispatch(storeLogin(userData));
+                if (userData) dispatch(storeLogin({ userData }));
                 navigate("/");
             }
         } catch (error) {
