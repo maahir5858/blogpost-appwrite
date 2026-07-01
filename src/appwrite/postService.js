@@ -58,11 +58,11 @@ class PostService {
 
     async deletePost(slug) {
         try {
-            await this.databases.deleteRow(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                slug,
-            );
+            await this.tablesDB.deleteRow({
+                databaseId: conf.appwriteDatabaseId,
+                tableId: conf.appwriteCollectionId,
+                rowId: slug,
+            });
             return true;
         } catch (error) {
             console.error("Appwrite Service :: deletePost() :: error", error);
